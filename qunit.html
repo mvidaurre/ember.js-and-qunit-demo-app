@@ -74,6 +74,12 @@
     <hr>
     <img {{bind-attr src=img}}>
 
+    {{#if body}}
+      <div class='below-the-fold'>
+        {{format-markdown body}}
+      </div>
+    {{/if}}
+
     <div class='tracks'>
       <table class='table'>
         <thead>

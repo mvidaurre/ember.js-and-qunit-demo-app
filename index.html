@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<script type="text/x-handlebars">
+  <script type="text/x-handlebars">
     <div class="navbar">
       <div class="navbar-inner">
         <a class="brand" href="#">Spoti5</a>
@@ -61,7 +61,7 @@
   <script type="text/x-handlebars" id="album">
     {{#if isEditing}}
       {{partial 'album/edit'}}
-      <button id="done" {{action 'doneEditing'}}>Done</button>
+      <button id="done"  {{action 'doneEditing'}}>Done</button>
     {{else}}
       <button id="edit" {{action 'edit'}}>Edit</button>
     {{/if}}
@@ -92,11 +92,10 @@
     </div>
   </script>
 
-
   <script type="text/x-handlebars" id="album/_edit">
-    <p>{{input type="text" value=name}}</p>
-    <p>{{input type="text" value=artist}}</p>
-    <p>{{textarea value=body}}</p>
+    <p>{{input id="album-name-field" type="text" value=name}}</p>
+    <p>{{input id="album-artist-field" type="text" value=artist}}</p>
+    <p>{{textarea id="album-comment-field" value=body}}</p>
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
