@@ -53,6 +53,16 @@ test("the track Quasar should have a duration of 2:22 minutes", function(){
 
 test("the album F*** Me, I'm Famous 2013 should have a duration of 02:39:54 minutes", function(){
   visit("/albums/1").then(function() {
-    equal(find("h2 span.duration").text(), "02:39:54", "the album F*** Me, I'm Famous 2013 should have a duration of 02:39:54 minute");
+    equal(find("h2 span.duration").text(), "02:39:54", "the album F*** Me, I'm Famous 2013 should have a duration of 02:39:54 minutes");
+  });
+});
+
+test("should change the duration of de album when a track duration is change", function(){
+  visit("/albums/1").then(function() {
+    click('button#edit').then(function() {
+    return fillIn("form input:last", "3:20")
+  }).then(function() {
+    equal(find("h2 span.duration").text(), "02:33:30", "the album F*** Me, I'm Famous 2013 should have a duration of 02:33:30 minutes");
+  });
   });
 });

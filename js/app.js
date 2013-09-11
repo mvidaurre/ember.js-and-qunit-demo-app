@@ -43,8 +43,8 @@ App.AlbumController = Ember.ObjectController.extend({
     var tracks = this.get('tracks');
     var album_duration = new Date()
     var initial_album_duration = album_duration
-    $.each(tracks, function() {
-      album_duration = sumDuration(album_duration, this.duration) 
+    tracks.forEach(function(val, index) {
+      album_duration = sumDuration(album_duration, val.duration) 
     });
     return hhmmss(album_duration - initial_album_duration)
   }.property('tracks.@each.duration')

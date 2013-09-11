@@ -95,9 +95,17 @@
   </script>
 
   <script type="text/x-handlebars" id="album/_edit">
-    <p>{{input id="album-name-field" type="text" value=name}}</p>
-    <p>{{input id="album-artist-field" type="text" value=artist}}</p>
-    <p>{{textarea id="album-comment-field" value=body}}</p>
+    <form action="#" method="get" accept-charset="utf-8">
+      <fieldset>
+        <legend>Please write the updated values</legend>
+        <p>{{input id="album-name-field" type="text" value=name}}</p>
+        <p>{{input id="album-artist-field" type="text" value=artist}}</p>
+        <p>{{textarea id="album-comment-field" value=body}}</p>
+        {{#each tracks}}
+          <p>{{input type="text" value=name}} {{input type="text" value=duration}}</p>
+        {{/each}}
+      </fieldset>
+    </form>
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
