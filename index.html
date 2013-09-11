@@ -61,9 +61,9 @@
   <script type="text/x-handlebars" id="album">
     {{#if isEditing}}
       {{partial 'album/edit'}}
-      <button {{action 'doneEditing'}}>Done</button>
+      <button id="done" {{action 'doneEditing'}}>Done</button>
     {{else}}
-      <button {{action 'edit'}}>Edit</button>
+      <button id="edit" {{action 'edit'}}>Edit</button>
     {{/if}}
 
     <h1>{{name}}</h1>
@@ -71,6 +71,12 @@
 
     <hr>
     <img {{bind-attr src=img}}>
+
+    {{#if body}}
+      <div class='below-the-fold'>
+        {{format-markdown body}}
+      </div>
+    {{/if}}
 
     <div class='tracks'>
       <table class='table'>
@@ -86,10 +92,18 @@
     </div>
   </script>
 
+
+  <script type="text/x-handlebars" id="album/_edit">
+    <p>{{input type="text" value=name}}</p>
+    <p>{{input type="text" value=artist}}</p>
+    <p>{{textarea value=body}}</p>
+  </script>
+
   <script src="js/libs/jquery-1.9.1.js"></script>
   <script src="js/libs/handlebars-1.0.0.js"></script>
   <script src="js/libs/ember-1.0.0.js"></script>
   <script src="js/libs/qunit-1.12.0.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js"></script>
   <script src="js/app.js"></script>
 
 </body>

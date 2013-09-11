@@ -39,6 +39,12 @@ App.AlbumController = Ember.ObjectController.extend({
   }
 });
 
+var showdown = new Showdown.converter();
+
+Ember.Handlebars.helper('format-markdown', function(input) {
+  return new Handlebars.SafeString(showdown.makeHtml(input));
+});
+
 var albums = [{
       id: '1',
       artistid:"spotify:artist:1Cs0zKBU1kc0i8ypK3B9ai",

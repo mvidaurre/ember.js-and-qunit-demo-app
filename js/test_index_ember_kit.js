@@ -34,3 +34,13 @@ test("should have as a track 'Turn Me On'", function(){
     ok(find(".track:contains('Turn Me On')").length, "Turn Me On should be a track for this album");
   });
 });
+
+test("should change the name of de album when it is edited", function(){
+  visit("/albums/1").then(function() {
+    click('button#edit').then(function() {
+    return fillIn("#album-name-field", "Fuck Me, I'm Famous 2013")
+  }).then(function() {
+    ok(find(".span9 h1:contains('Fuck')").length, "The name of the album should change at editing");
+  });
+  });
+});
