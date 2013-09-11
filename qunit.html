@@ -5,6 +5,7 @@
 <title>Ember Starter Kit</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/qunit-1.12.0.css">
 </head>
 <body>
@@ -12,7 +13,15 @@
   <div id="qunit-fixture"></div>
 
   <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Spoti5</a>
+        <ul class="nav">
+          <li>{{#link-to 'albums'}}Albums{{/link-to}}</li>
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
+        </ul>
+      </div>
+    </div>
 
     {{outlet}}
   </script>
@@ -23,6 +32,60 @@
       <li class="post">{{item}}</li>
     {{/each}}
     </ul>
+  </script>
+
+  <script type="text/x-handlebars" id="albums">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class='table'>
+            <thead>
+              <tr><th>Albums</th></tr>
+            </thead>
+            {{#each model}}
+            <tr><td class="album">
+                {{#link-to 'album' this}}{{name}} <small class='muted'>by {{artist}}</small>{{/link-to}}
+            </td></tr>
+            {{/each}}
+          </table>
+        </div>
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="albums/index">
+    <p class="text-warning">Please select a album</p>
+  </script>
+
+  <script type="text/x-handlebars" id="album">
+    {{#if isEditing}}
+      {{partial 'album/edit'}}
+      <button {{action 'doneEditing'}}>Done</button>
+    {{else}}
+      <button {{action 'edit'}}>Edit</button>
+    {{/if}}
+
+    <h1>{{name}}</h1>
+    <h2>by {{artist}} <small class='muted'>({{released}})</small></h2>
+
+    <hr>
+    <img {{bind-attr src=img}}>
+
+    <div class='tracks'>
+      <table class='table'>
+        <thead>
+          <tr><th>Tracks</th></tr>
+        </thead>
+      {{#each tracks}}
+        <tr><td class="track">
+            <a {{bind-attr href=href}}>{{name}}</a>
+        </td></tr>
+      {{/each}}
+      </table>
+    </div>
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
